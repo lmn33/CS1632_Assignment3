@@ -85,9 +85,12 @@ If you don't see this email in your inbox within 15 minutes, look for it in your
 		driver.findElement(By.id("password")).clear();
 		driver.findElement(By.id("password")).sendKeys("neiman11");
 		driver.findElement(By.id("email")).submit();
+		
+		//Logout
 		driver.get("http://stackoverflow.com/users/logout");
 		driver.findElement(By.xpath("//form[@method='post']")).submit();
 		
+		//Once logged out, the log in link should display.
 		WebElement loginLink = driver.findElement(By.linkText("log in"));
 		assertNotNull(loginLink);
 		
@@ -99,6 +102,7 @@ If you don't see this email in your inbox within 15 minutes, look for it in your
 	//Then the browser should stay on the login page.
 	@Test
 	public void loginIncorrectPassword() {
+		
 		driver.get("https://stackoverflow.com/users/login?ssrc=head&returnurl=http%3a%2f%2fstackoverflow.com%2f");
 		driver.findElement(By.id("email")).clear();
 		driver.findElement(By.id("email")).sendKeys("dsn9@pitt.edu");
@@ -115,6 +119,7 @@ If you don't see this email in your inbox within 15 minutes, look for it in your
 	//Then the browser should stay on the login page.
 	@Test
 	public void loginInvalidUsername() {
+		
 		driver.get("https://stackoverflow.com/users/login?ssrc=head&returnurl=http%3a%2f%2fstackoverflow.com%2f");
 		driver.findElement(By.id("email")).clear();
 		driver.findElement(By.id("email")).sendKeys("dneiman11@punahou.edu");
@@ -131,8 +136,8 @@ If you don't see this email in your inbox within 15 minutes, look for it in your
 	//Then the site should redirect to the main page and show the log in link
 	@Test
 	public void invalidLogOut() {
-		driver.get("http://stackoverflow.com/users/logout");
 		
+		driver.get("http://stackoverflow.com/users/logout");
 		assertTrue(driver.getTitle().equals("Stack Overflow"));
 		WebElement loginLink = driver.findElement(By.linkText("log in"));
 		assertNotNull(loginLink);
