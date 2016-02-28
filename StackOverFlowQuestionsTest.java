@@ -66,7 +66,7 @@ public class StackOverFlowQuestionsTest {
 	
 	//Given that there is a clickable questions button
 	//When I click on it
-	//Then there should be tabs on the screen	
+	//Then there should be tabs on the screen labeled newest, featured, frequent, votes, active, and unanswered	
 	@Test
 	public void testQuestionsSearch()
 	{
@@ -76,7 +76,12 @@ public class StackOverFlowQuestionsTest {
 			String newPageTitle = driver.getTitle();
 			assertTrue(newPageTitle.contains("Newest Questions - Stack Overflow"));
 			questionsSearch.findElement(By.id("tabs"));
-			//questionsSearch.findElement(By.linkText("Questions with open bounties"));
+			questionsSearch.findElement(By.partialLinkText("newest"));
+			questionsSearch.findElement(By.partialLinkText("featured"));
+			questionsSearch.findElement(By.partialLinkText("frequent"));
+			questionsSearch.findElement(By.partialLinkText("votes"));
+			questionsSearch.findElement(By.partialLinkText("active"));
+			questionsSearch.findElement(By.partialLinkText("unanswered"));
 			//questionsSearch.findElement(By.linkText("Questions with the most links"));
 		}
 		catch(NoSuchElementException nseex)
@@ -84,4 +89,6 @@ public class StackOverFlowQuestionsTest {
 			fail();
 		}
 	}
+	
+	
 }
