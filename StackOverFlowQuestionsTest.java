@@ -7,6 +7,12 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
+/**
+ * As a user,
+ * I want to be able to search and post questions,
+ * So that I can solve my problems
+ */
+
 public class StackOverFlowQuestionsTest {
 
 	
@@ -90,5 +96,26 @@ public class StackOverFlowQuestionsTest {
 		}
 	}
 	
+	// Given that I am on the questions page
+	// When I am looking for a question related to what I am looking at
+	// Then it should have a tag that labels what language it is for
+	@Test
+	public void testHasDifferentLanguageTags() 
+	{
+		try 
+		{
+			questionsSearch.findElement(By.linkText("javascript"));
+			questionsSearch.findElement(By.linkText("java"));
+			questionsSearch.findElement(By.linkText("c#"));
+			questionsSearch.findElement(By.linkText("php"));
+			questionsSearch.findElement(By.linkText("jquery"));
+			questionsSearch.findElement(By.linkText("html"));
+			questionsSearch.findElement(By.linkText("python"));
+		} 
+		catch (NoSuchElementException nseex) 
+		{
+			fail();
+		}
+	}
 	
 }
