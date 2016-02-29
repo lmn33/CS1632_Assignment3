@@ -24,32 +24,7 @@ public class LoginTest {
 		driver.get("https://stackoverflow.com");
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 	}
-	
-	
-	/* Registration successful message below.
-	 * Registration email sent to dsn9@pitt.edu. Open this email to finish signup.
 
-If you don't see this email in your inbox within 15 minutes, look for it in your
- junk mail folder. If you find it there, please mark the email as "Not Junk".
-	 */
-	
-	//Given that I am on the registration page
-	//When I try to register without a password
-	//Then I will get an error message
-	/*
-	@Test
-	public void testRegister() {
-		driver.get("https://stackoverflow.com/users/signup?ssrc=head&returnurl=http%3a%2f%2fstackoverflow.com%2f");
-		driver.findElement(By.id("display-name")).sendKeys("David Neiman");
-		driver.findElement(By.id("password")).sendKeys("SamplePass11");
-		driver.findElement(By.id("email")).sendKeys("dsn9@pitt.edu");
-		driver.findElement(By.id("password")).submit();
-		//String resultingPage = driver.findElement(By.xpath("//div[@class='val-message val-info']")).getText();
-		//assertTrue(resultingPage.contains("already registered"));
-	
-	}
-	*/
-	
 	//Scenario 1 
 	//Given that I am on the user login page
 	//When I try to log in with a valid email and password
