@@ -1,6 +1,5 @@
 import static org.junit.Assert.*;
 
-import org.junit.Before;
 import org.junit.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -79,10 +78,9 @@ public class StackOverFlowJobsTest {
 		try
 		{
 			driver.findElement(By.linkText("Jobs")).click();
-			//driver.findElement(By.linkText("new")).click();
-			jobsSearch.findElement(By.linkText("search jobs"));
 			String newPageTitle = driver.getTitle();
 			assertTrue(newPageTitle.contains("Job Listings - Stack Overflow"));
+			jobsSearch.findElement(By.linkText("search jobs"));
 		}
 		catch(NoSuchElementException nseex)
 		{
@@ -109,5 +107,28 @@ public class StackOverFlowJobsTest {
 			fail();
 		}
 	}
-	
+
+	// Given that I am on the jobs page
+	// When I am looking for a job that requires a specific language
+	// Then it should have a tag that labels what language is required
+	@Test
+	public void testHasDifferentLanguageTags() 
+	{
+		try 
+		{
+			jobsSearch.findElement(By.linkText("javascript"));
+			jobsSearch.findElement(By.linkText("java"));
+			jobsSearch.findElement(By.xpath("//*[contains(text(), 'php')]"));
+			jobsSearch.findElement(By.xpath("//*[contains(text(), 'jquery')]"));
+			jobsSearch.findElement(By.xpath("//*[contains(text(), 'html')]"));
+			jobsSearch.findElement(By.xpath("//*[contains(text(), 'python')]"));
+			//jobsSearch.findElement(By.linkText("jquery"));
+			//jobsSearch.findElement(By.linkText("html"));
+			//jobsSearch.findElement(By.linkText("python"));
+		} 
+		catch (NoSuchElementException nseex) 
+		{
+			fail();
+		}
+	}
 }
