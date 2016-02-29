@@ -7,6 +7,10 @@ import org.junit.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
+//As a user,
+//I want to be able to navigate between pages
+//So that I can change the page I am on.
+
 public class NavigationTest {
 
 	static WebDriver driver = new HtmlUnitDriver();
@@ -16,10 +20,6 @@ public class NavigationTest {
 		driver.get("https://www.stackoverflow.com");
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 	}
-	
-	//As a user,
-	//I want to be able to navigate between pages
-	//So that I can load the different pages.
 	
 	//Scenario 1
 	//Given that I am on the main page,
@@ -34,13 +34,13 @@ public class NavigationTest {
 
 	//Scenario 2
 	//Given that I am on the questions page
-	//When I click on the jobs tab
-	//Then the job listings page will be loaded.
+	//When I click on the tags tab
+	//Then the tags page will be loaded.
 	@Test
-	public void navigateJobs() {
+	public void navigateTags() {
 		driver.get("https://stackoverflow.com/Questions");
-		driver.findElement(By.linkText("Jobs")).click();
-		assertTrue(driver.getTitle().contains("Job"));
+		driver.findElement(By.linkText("Tags")).click();
+		assertTrue(driver.findElement(By.xpath("//*[@class='youarehere']")).getText().contains("Tags"));
 	}
 	
 	//Scenario 3
@@ -51,18 +51,20 @@ public class NavigationTest {
 	public void returnToMain() {
 		driver.get("https://stackoverflow.com/Users");
 		driver.findElement(By.linkText("Stack Overflow")).click();
+		WebElement home = driver.findElement(By.xpath("//*[contains(text(), 'home-page')]"));
 		assertTrue(driver.getTitle().contains("Stack Overflow"));
+		assertNotNull(home);
 	}
 	
 	//Scenario 4
 	//Given that I am on the tabs page
-	//When I click on the Programmers tab
+	//When I click on the Programmers tab on the bottom of the page
 	//Then I will be directed to the Programmers Stack Exchange
 	@Test
 	public void navigateToProgrammerStackExchange() {
 		driver.get("https://stackoverflow.com/Tags");
 		driver.findElement(By.linkText("Programmers")).click();
-		assertTrue(driver.getTitle().contains("Programmers"));
+		assertTrue(driver.findElement(By.tagName("title")).getAttribute("innerHTML").contains("Programmers Stack Exchange"));
 	}
 	
 	//Scenario 5
@@ -76,6 +78,6 @@ public class NavigationTest {
 		driver.findElement(By.linkText("Jobs")).click();
 		driver.findElement(By.linkText("Users")).click();
 		driver.findElement(By.linkText("Questions")).click();
-		assertTrue(driver.getTitle().contains("Questions"));
+		assertTrue(driver.findElement(By.className("youarehere")).getText().contains("Questions"));
 	}
 }
