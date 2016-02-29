@@ -118,4 +118,22 @@ public class StackOverFlowQuestionsTest {
 		}
 	}
 	
+	
+	// Given that I am on the questions page
+	// When I am looking for at a question
+	// Then it should have a votes, views, and status as to it being answered	
+	@Test
+	public void testHasVotedAndAnsweres() 
+	{
+		try 
+		{
+			questionsSearch.findElement(By.className("votes"));
+			questionsSearch.findElement(By.className("views"));
+			questionsSearch.findElement(By.className("status"));
+		} 
+		catch (NoSuchElementException nseex) 
+		{
+			fail();
+		}
+	}
 }
